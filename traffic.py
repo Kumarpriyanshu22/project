@@ -1,4 +1,9 @@
 import turtle
+legend = turtle.Turtle()
+legend.hideturtle()
+legend.penup()
+legend.goto(0, -150)
+legend.write("Denotion:\nGreen - Go\nOrange - Prepare to Stop\nRed - Stop", align="left", font=("Times New Roman",22, "bold"))
 
 # Create a playground for turtles
 wn = turtle.Screen()
@@ -13,7 +18,7 @@ henry = turtle.Turtle()
 def draw_housing():
     """ Draw a nice housing to hold the traffic lights"""
     tess.pensize(3)
-    tess.color('black', 'white')
+    tess.color('white', 'black')
     tess.begin_fill()
     tess.forward(80)
     tess.left(90)
@@ -42,6 +47,7 @@ circle(tess, 40, 'green')
 circle(alex, 100, 'orange')
 circle(henry, 160, 'red')
 
+
 # This variable holds the current state of the machine
 state_num = 0
 
@@ -53,12 +59,12 @@ def advance_state_machine():
         henry.color('darkgrey')
         alex.color('darkgrey')
         tess.color('green')
-        wn.ontimer(advance_state_machine, 3000)  # set the timer to explode in 3000 milliseconds (3 seconds)
+        wn.ontimer(advance_state_machine, 2000)  # set the timer to explode in 3000 milliseconds (3 seconds)
         state_num = 1
     elif state_num == 1:  # Transition from state 1 to state 2
         henry.color('darkgrey')
         alex.color('orange')
-        wn.ontimer(advance_state_machine, 1000)
+        wn.ontimer(advance_state_machine, 2000)
         state_num = 2
     elif state_num == 2:  # Transition from state 2 to state 3
         tess.color('darkgrey')
@@ -67,11 +73,13 @@ def advance_state_machine():
     else:  # Transition from state 3 to state 0
         henry.color('red')
         alex.color('darkgrey')
-        wn.ontimer(advance_state_machine, 2000)
+        wn.ontimer(advance_state_machine, 3000)
         state_num = 0
 
 
 advance_state_machine()
+
+# Add legend on the turtle screen
 
 wn.update()  # Update the window
 
